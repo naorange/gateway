@@ -1,0 +1,66 @@
+server:
+  port: 8088
+
+---
+
+spring:
+  profiles: default
+  cloud:
+    gateway:
+      routes:
+        - id: ticketBook
+          uri: http://localhost:8081
+          predicates:
+            - Path=/ticketBookSystems/** 
+        - id: concert
+          uri: http://localhost:8082
+          predicates:
+            - Path=/concertSystems/** 
+        - id: dashboard
+          uri: http://localhost:8083
+          predicates:
+            - Path= /courseBookStatuses/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+
+---
+
+spring:
+  profiles: docker
+  cloud:
+    gateway:
+      routes:
+        - id: ticketBook
+          uri: http://ticketBook:8080
+          predicates:
+            - Path=/ticketBookSystems/** 
+        - id: concert
+          uri: http://concert:8080
+          predicates:
+            - Path=/concertSystems/** 
+        - id: dashboard
+          uri: http://dashboard:8080
+          predicates:
+            - Path= /courseBookStatuses/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+server:
+  port: 8080
