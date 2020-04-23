@@ -11,7 +11,7 @@ spring:
         - id: ticketBook
           uri: http://localhost:8081
           predicates:
-            - Path=/ticketBookSystems/** 
+            - Path=/ticketBookSystems/**,/ticket/**,/cancel/**
         - id: concert
           uri: http://localhost:8082
           predicates:
@@ -42,7 +42,7 @@ spring:
         - id: ticketBook
           uri: http://ticketBook:8080
           predicates:
-            - Path=/ticketBookSystems/** 
+            - Path=/ticketBookSystems/**,/ticket/**,/cancel/** 
         - id: concert
           uri: http://concert:8080
           predicates:
